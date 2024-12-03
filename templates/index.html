@@ -4,31 +4,74 @@
     </head>
 
     <body>
+        <main>
+            <h1>[Feitian College] Login</h1>
 
-        <p>Login</p>
-        <p>Please enter your username and password</p>
+            <form class="form-group" action="{{ url_for('login') }}" method="post">
+    
+                <p>
+                    <label></label>
+                    <input type="text" name="username" placeholder="Username" id="username" required />
+                </p>
+    
+                <p>
+                    <label></label>
+                    <input type="password" class="form-control" name="password" placeholder="Password" id="password" required />
+                </p>
+    
+        
+                
+                <div>
+                    <button type="submit">Login</button>
+                </div>
+                
 
-        <form class="form-group" action="{{ url_for('login') }}" method="post">
-
-            <p>
-                <label>Username</label>
-                <input type="text" name="username" placeholder="Username" id="username" required />
-            </p>
-
-            <p>
-                <label>Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Password" id="password" required />
-            </p>
-
-            <input type="checkbox" value="checked" /><b>Remember</b>
-            <br><input type="submit" value="Login" name="" />
-
-        </form>
-
-        <div id="msg">{{ msg }}</div>
-            <p>No account <a href="{{ url_for('register') }}">Register</a></p>
-        </div>
+            </form>
+    
+            <div id="msg">{{ msg }}</div>
+                <p> <a href="{{ url_for('register') }}">Don't have an account? Sign up</a></p>
+            </div>
+        </main>
+       
 
     </body>
 
 </html>
+
+<style>
+    
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f8fb;
+        font-size: 10px;
+    }
+
+    main {
+        max-width: 250;
+        margin: 40px auto;
+        padding: 20px 40px; /* Increased right padding */
+        background-color: white;
+        border-radius: 8px;
+    }
+
+    input {
+        padding: 10px 50px;
+        width: 100%;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 10px 100px;
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+</style>
+
