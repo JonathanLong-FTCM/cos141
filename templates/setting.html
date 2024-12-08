@@ -1,0 +1,100 @@
+{% extends 'layout.html' %} 
+{% block title %} Profile {% endblock %} 
+{% block content %}
+
+    <main> 
+           
+        <h1>Account Settings</h1>
+        
+
+        <form id="settingForm" action="{{ url_for('setting') }}" method="post" autocomplete="off">
+           
+            <p>
+                <h2>Change Password</h2>
+                <input type="password" id="password" name="password" placeholder="Enter new password" pattern="(?=.*\W+)(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least 8 characters long, 1 uppercase, 1 lowercase, 1 number, and 1 special character." required>
+            </p>
+                
+            <p>
+                <h2>Update Email</h2>
+                <input type="email" name="email" id="email" placeholder="Enter new email" title="Must be email format." required/>
+            </p>
+            
+            <div id="msg">{{ msg }}</div>
+            
+            <div>
+                <input type="submit" value="Save Changes" name="" />
+            </div>
+
+        </form> 
+
+    </main>
+
+{% endblock %}
+
+<script>
+    document.getElementById("settingForm").addEventListener("submit", function(event) {
+        // prevent deafult submit process
+        event.preventDefault();
+        
+        // get value
+        const password = document.getElementById("password").value.trim();
+        const email = document.getElementById("email").value.trim();
+        
+        // requirments for password and email
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+
+        // if password porvided, but not in the right form
+        if (password !== "" && !passwordRegex.test(password)) {
+            document.getElementById("msg").textContent = "Password must be at least 8 characters long, include 1 uppercase, 1 lowercase, 1 number, and 1 special character.";
+        } 
+        // if password provided and it is in the right form
+        else if (password !== "" && passwordRegex.test(password)){
+            // if email not provided
+            if (email === "") {
+                // Clear the error message if the password is valid
+                document.getElementById("msg").textContent = "";
+                // finish submit normally
+                document.getElementById("settingForm").submit();
+                // redirection after submit
+                window.location.href="{{ url_for('profile') }}"
+            }
+            // if email provided and it is in the right form
+            else if (email !=="" && emailRegex.test(email)) {
+                // Clear the error message if the password is valid
+                document.getElementById("msg").textContent = "";
+                // finish submit normally
+                document.getElementById("settingForm").submit();
+            }
+            // if email is provided but it is not in the right form
+            else {
+                // error message
+                document.getElementById("msg").textContent = "Invalid email address";
+            }
+        }
+        // if password not provided but email provided
+        else if (password === "" && email !== ""){
+            // if email provided and it is in the right form
+            if (emailRegex.test(email)) {
+                // Clear the error message if the password is valid
+                document.getElementById("msg").textContent = "";
+                // finish submit normally
+                document.getElementById("settingForm").submit();
+                
+            }
+            // if email is provided but it is not in the right form
+            else if (!emailRegex.test(email)){
+                // error message
+                document.getElementById("msg").textContent = "Invalid email address";
+            }
+        }
+        // if both not
+        else if(password === "" && email === ""){
+            // do nothing here but sumbmit normally
+            document.getElementById("settingForm").submit();
+        }
+    });
+ 
+
+</script>

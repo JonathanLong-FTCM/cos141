@@ -1,14 +1,136 @@
 <html>
-    <head><title>{% block title %}{% endblock %}</title></head>
+    <head><title>{% block title %}{% endblock %}</title>
+        
+        <style>
+    
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f8fb;
+                font-size: 14px;
+                text-align: center;
+            }
+        
+            main h1 {
+                font-size: 20px;
+                text-align: center;
+            }
+            
+            main h2 {
+                font-size: 13px;
+                text-align: left;
+                margin: 0;
+            }
+
+            main {
+                max-width: 300;
+                margin: 40px auto;
+                padding: 20px 40px; /* Increased right padding */
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0.1em 0.1em 1em lightgray;
+            }
+        
+            input[type="text"],
+            input[type="password"],
+            input[type="email"],
+            select,
+            textarea {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border-radius: 4px;
+                border: 1px solid #ddd;
+            }
+            
+            div {
+                text-align: left;
+            }
+            
+            table {
+                width: 100%;
+            }
+        
+            th {
+                text-align: left;
+                font-size: 14px;
+            }
+
+            td {
+                text-align: right;
+                font-size: 14px;
+            }
+
+            input[type="submit"],
+            select,
+            textarea {
+                width: 110;
+                padding: 8px;
+                background-color: rgb(0, 111, 231);
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 12px;
+                margin-left: end;
+            }
+
+            input[type="logout"],
+            select,
+            textarea {
+                width: 70;
+                padding: 8px;
+                margin-top: 15px;
+                background-color: red;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                text-align: center;
+                font-size: 12px;
+            }
+            
+            button:hover {
+                background-color: #45a049;
+            }
+        
+            fieldset {
+                border: none;
+                margin-top: 20px;
+            }
+
+            div.headline {
+                width: 100%;
+                padding: 15px;
+                margin-top: 1px;
+                background-color: black;
+                color: white;
+                text-align: center;
+            }
+            
+            div.headline a{
+                color: white;
+                text-decoration: none;
+                font-size: 14px;
+                padding: 15px;
+            }
+
+        </style>
+        
+    </head>
     
     <body>
-
-        <a href="{{ url_for('home') }}">Home</a>
-        <a href="{{ url_for('profile') }}">Profile</a>
-        <a href="{{ url_for('setting') }}">Setting</a>
-        <a href="{{ url_for('logout') }}">Logout</a>
         
-        {% block content %}{% endblock %}
+        <div class='headline'>
 
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('setting') }}">Settings</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+
+        </div>
+
+        {% block content %}{% endblock %}
     </body>
 </html>

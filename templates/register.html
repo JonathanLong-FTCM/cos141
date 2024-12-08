@@ -1,42 +1,98 @@
 <html>
     <head>
         <title>Register</title>
+        <style>
+
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f8fb;
+                font-size: 14px;
+                text-align: center;
+            }
+        
+            main h1 {
+                font-size: 20px;
+            }
+        
+            main {
+                max-width: 250;
+                margin: 40px auto;
+                padding: 20px 40px; /* Increased right padding */
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0.1em 0.1em 1em lightgray;
+            }
+        
+            input[type="text"],
+            input[type="password"],
+            select,
+            textarea {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border-radius: 4px;
+                border: 1px solid #ddd;
+            }
+        
+            input[type="submit"],
+            select,
+            textarea {
+                width: 100%;
+                padding: 10px;
+                margin-top: 1px;
+                background-color: rgb(0, 100, 206);
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        
+            fieldset {
+                border: none;
+                margin-top: 20px;
+            }
+        
+        </style>
     </head>
 
     <body>
-        <p>Register New User</p>
+        <main> 
+            <h1>[Feitian College] Signup</h1>
 
-        <form action="{{ url_for('register') }}" method="post" autocomplete="off">
-           
-            <p>
-                <label>Your Name</label>
-                <input type="text" name="fullname" id="fullname" placeholder="Enter your Name" />
-            </p>
+            <form action="{{ url_for('register') }}" method="post" autocomplete="off">
+               
+                <p>
+                    <input type="text" name="fullname" id="fullname" placeholder="Full Name" />
+                </p>
+    
+                <p>
+                    <input type="text" name="username" id="username" placeholder="Username" required />
+                </p>
 
-            <p>
-                <label>Your Email</label>
-                <input type="text" name="email" id="email" placeholder="Enter your Email" />
-            </p>
+                <p>
+                    <input type="text" name="email" id="email" placeholder="Email" />
+                </p>
+    
+                <p>
+                    <input type="password" name="password" id="password" placeholder="Password" required placeholder="Enter your Password" />
+                </p>
+                
+                
+                <div id="msg">{{ msg }}</div>
+                    
+                <input type="submit" value="Sign Up" name="" />
+            
+                <p>
+                    <a href="{{ url_for('login') }}">Already have an account? Login</a>
+                </p>
+                
+            </form>
 
-            <p>
-                <label>Username</label>
-                <input type="text" name="username" id="username" placeholder="Enter your Username" required />
-            </p>
-            
-            <p>
-                <label>Password</label>
-                <input type="password" name="password" id="password" placeholder="Password" required placeholder="Enter your Password" />
-            </p>
-            
-            
-            <div id="msg">{{ msg }}</div>
-            <input type="submit" value="Register" name="" />
+        </main>
         
-            <p>
-                <a href="{{ url_for('login') }}">Login</a>
-            </p>
-            
-        </form>
 
     </body>
 </html>
+

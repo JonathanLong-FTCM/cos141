@@ -1,6 +1,66 @@
 <html>
     <head>
         <title>Login</title>
+
+        <style>
+    
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f8fb;
+                font-size: 14px;
+                text-align: center;
+            }
+        
+            main h1 {
+                font-size: 20px;
+            }
+        
+            main {
+                max-width: 250;
+                margin: 40px auto;
+                padding: 20px 40px; /* Increased right padding */
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0.1em 0.1em 1em lightgray;
+            }
+        
+            input[type="text"],
+            input[type="password"],
+            select,
+            textarea {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border-radius: 4px;
+                border: 1px solid #ddd;
+            }
+            
+            input[type="submit"],
+            select,
+            textarea {
+                width: 100%;
+                padding: 8px;
+                margin-top: 1px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            
+            button:hover {
+                background-color: #45a049;
+            }
+        
+            fieldset {
+                border: none;
+                margin-top: 20px;
+            }
+        
+        </style>
+
     </head>
 
     <body>
@@ -10,22 +70,17 @@
             <form class="form-group" action="{{ url_for('login') }}" method="post">
     
                 <p>
-                    <label></label>
                     <input type="text" name="username" placeholder="Username" id="username" required />
                 </p>
     
                 <p>
-                    <label></label>
                     <input type="password" class="form-control" name="password" placeholder="Password" id="password" required />
                 </p>
     
-        
-                
                 <div>
-                    <button type="submit">Login</button>
+                    <input type="submit" value="Login" name="" />
                 </div>
                 
-
             </form>
     
             <div id="msg">{{ msg }}</div>
@@ -37,41 +92,4 @@
     </body>
 
 </html>
-
-<style>
-    
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f8fb;
-        font-size: 10px;
-    }
-
-    main {
-        max-width: 250;
-        margin: 40px auto;
-        padding: 20px 40px; /* Increased right padding */
-        background-color: white;
-        border-radius: 8px;
-    }
-
-    input {
-        padding: 10px 50px;
-        width: 100%;
-    }
-
-    button {
-        margin-top: 20px;
-        padding: 10px 100px;
-        width: 100%;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        text-align: center;
-    }
-
-</style>
 
