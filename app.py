@@ -164,25 +164,28 @@ def profile():
     # user is not loggedin redirect to login page
     return redirect(url_for("login"))
 
-@app.route("/newsletter", methods=["GET", "POST"])
-def newsletter():
+@app.route("/setting", methods=["GET", "POST"])
+def setting():
     msg = ""
+    
     if request.method == "POST":
-        fullname = request.form["fullname"]
+        password = request.form["password"]
         email = request.form["email"]
-        
-        # SQL insert
+        id = session["id"]
+
+        # SQL update
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute(
-             "INSERT INTO users VALUE (NULL, %s, %s)",
-             (fullname, email),
+             "UPDATE accounts SET password = %s, email = %s WHERE id = %s",
+             (password, email, id),
             )
+    
         conn.commit()
-        msg = "Successfully inserted into users table"
+        return redirect(url_for("profile"))
     else:
-        fullname = "Jonathan"
-    return render_template("newsletter.html", fullname=fullname, msg=msg)
+        pass 
+    return render_template("setting.html", msg=msg)
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8081)
